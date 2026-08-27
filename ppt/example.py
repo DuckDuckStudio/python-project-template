@@ -4,6 +4,7 @@
 包代码示例。
 """
 
+
 def add_numbers(a: int, b: int) -> int:
     """
     返回 a 和 b 相加的和。
