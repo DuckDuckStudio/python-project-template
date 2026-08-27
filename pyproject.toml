@@ -40,10 +40,10 @@ max-line-length = 200 # 最大行长
 
 [tool.pytest.ini_options]
 testpaths = "tests"
-addopts = "--cov <仓库名>"
+addopts = "--cov ppt"
 
 [tool.uv.build-backend]
-module-name = "<仓库名>"
+module-name = "ppt"
 module-root = ""
 
 [build-system]
