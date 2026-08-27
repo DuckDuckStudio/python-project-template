@@ -1,0 +1,52 @@
+name: Python 代码检查
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions: {}
+
+jobs:
+  lint:
+    name: 运行 lint 检查
+    runs-on: ubuntu-latest
+    env:
+      PYTHONIOENCODING: utf-8
+
+    steps:
+      - name: 签出代码
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: 配置 Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.14"
+
+      - name: 安装 uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: false
+
+      - name: 安装依赖
+        shell: bash
+        run: uv sync
+
+      - name: (ruff) 检查格式
+        shell: bash
+        run: uv run ruff format --check
+
+      - name: (ruff) 检查错误
+        shell: bash
+        run: uv run ruff check
+
+      - name: (ty) 检查错误
+        shell: bash
+        run: uv run ty check
+
+      - name: (pylint) 检查错误
+        shell: bash
+        run: uv run pylint "." --ignore ".venv"

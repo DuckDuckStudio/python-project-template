@@ -1,0 +1,53 @@
+[project]
+name = "ppt" # 项目名
+version = "0.1.0"
+description = "Python 项目模板。"
+# keywords = [
+# # 关键词
+# ]
+readme = "README.md"
+authors = [{ name = "你的名字" }]
+# https://pypi.org/classifiers/
+classifiers = [
+    "Private :: Do Not Upload", # 移除此分类以允许上传包到 PyPI
+    "Typing :: Typed",
+]
+license = "CC0-1.0" # https://spdx.org/licenses/
+license-files = ["LICENSE.txt"]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#urls
+Homepage = "https://github.com/<所有者>/<仓库名>"
+Repository = "https://github.com/<所有者>/<仓库名>"
+Issues = "https://github.com/<所有者>/<仓库名>/issues"
+Changelog = "https://github.com/<所有者>/<仓库名>/releases"
+PyPI = "https://pypi.org/project/<项目名>/"
+
+[dependency-groups]
+# 使用 pytest 进行测试
+dev = [
+    "pylint~=4.0.7",
+    "pytest~=9.1.1",
+    "pytest-cov~=7.1.0",
+    "ruff~=0.16.4",
+    "ty~=0.0.74",
+]
+
+[tool.pylint.MAIN]
+max-line-length = 200 # 最大行长
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+addopts = "--cov <仓库名>"
+
+[tool.uv.build-backend]
+module-name = "<仓库名>"
+module-root = ""
+
+[build-system]
+# 使用 uv build：https://docs.astral.sh/uv/concepts/build-backend/
+# 其他选择：https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#declaring-the-build-backend
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"

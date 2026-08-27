@@ -1,0 +1,31 @@
+[project]
+name = "ppt-tools"
+version = "0.1.0"
+description = "项目模板的一些工具。"
+authors = [{ name = "鸭鸭「カモ」" }]
+classifiers = [
+    "Private :: Do Not Upload",
+    "Typing :: Typed",
+]
+license = "CC0-1.0"
+license-files = ["../LICENSE.txt"]
+requires-python = ">=3.10"
+dependencies = [
+    "catfood==2.2.1",
+    "colorama==0.4.6",
+]
+
+[dependency-groups]
+dev = [
+    "pylint~=4.0.7",
+    "ruff~=0.16.4",
+    "ty~=0.0.74",
+]
+
+[tool.pylint.MAIN]
+max-line-length = 200 # 最大行长
+disable = [
+    "missing-module-docstring", # C0114
+    "missing-function-docstring", # C0116
+    "non-ascii-module-import", # C2403
+]
