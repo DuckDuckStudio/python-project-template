@@ -78,7 +78,7 @@ class TipFile:
 
 def _re_sub(file: Path, pattern: str | re.Pattern[str]) -> None:
     """
-    对指定文件的内容进行正则替换。
+    删除正则匹配的内容。
 
     Args:
         file: 需要修改的文件
@@ -164,6 +164,17 @@ def _clean_comment(file: Path) -> None:
     _re_sub(file, r"\s+#.*$")
 
 
+def _remove_ty_exclude(file: Path) -> None:
+    """
+    移除 `ty check` 的 `--exclude` 参数
+
+    Args:
+        file (Path): 需要修改的文件
+    """
+
+    _re_sub(file, r'\s--exclude\s"tools"')
+
+
 TIP_FILES: Final = (
     TipFile("TIPS.md"),
     TipFile("ppt/example.py"),
@@ -173,6 +184,7 @@ TIP_FILES: Final = (
     TipFile(".github/workflows/release_pypi.yaml", modify=_remove_test_tip),
     TipFile(".github/workflows/release_test_pypi.yaml", modify=_remove_test_tip),
     TipFile(".github/workflows/tests.yaml", modify=_remove_your_tip),
+    TipFile(".github/workflows/lint.yaml", modify=_remove_ty_exclude),
     TipFile(".github/CODEOWNERS", modify=_replace_with_empty),
     TipFile("ppt/__init__.py", modify=_replace_with_empty),
     TipFile("pyproject.toml", modify=_clean_comment),

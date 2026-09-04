@@ -45,7 +45,7 @@ jobs:
 
       - name: (ty) 检查错误
         shell: bash
-        run: uv run ty check
+        run: uv run ty check --exclude "tools"
 
       - name: (pylint) 检查错误
         shell: bash
