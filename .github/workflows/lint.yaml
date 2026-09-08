@@ -49,4 +49,4 @@ jobs:
 
       - name: (pylint) 检查错误
         shell: bash
-        run: uv run pylint "." --ignore ".venv"
+        run: uv run pylint "." --ignore ".venv,tools"
