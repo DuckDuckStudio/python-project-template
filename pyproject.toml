@@ -28,7 +28,7 @@ PyPI = "https://pypi.org/project/<项目名>/"
 [dependency-groups]
 # 使用 pytest 进行测试
 dev = [
-    "pylint~=4.0.7",
+    "pylint~=4.0.8",
     "pytest~=9.1.1",
     "pytest-cov~=7.1.0",
     "ruff~=0.16.5",
