@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Final
 
-from catfood.functions.print import 消息头
+from catfood.functions.print import MSHead
 from colorama import Fore
 
 ROOT: Final = Path(__file__).resolve().parent.parent
@@ -42,7 +42,7 @@ class TipFile:
         移除该 TipFile。
         """
 
-        print(f"{消息头.信息} 移除 {Fore.BLUE}{self.path}{Fore.RESET}")
+        print(f"{MSHead.Information} 移除 {Fore.BLUE}{self.path}{Fore.RESET}")
 
         path = self._absolute_path()
         if path.exists():
@@ -58,7 +58,7 @@ class TipFile:
         调用指定的函数修改 TipFile。
         """
 
-        print(f"{消息头.信息} 修改 {Fore.BLUE}{self.path}{Fore.RESET}")
+        print(f"{MSHead.Information} 修改 {Fore.BLUE}{self.path}{Fore.RESET}")
 
         if self.modify is None:
             raise TypeError(f"提示文件 {self.path} 没有指定修改函数")
@@ -223,7 +223,7 @@ def main() -> int:
     入口函数
     """
 
-    print(f"{消息头.信息} 项目目录 {Fore.BLUE}{ROOT}{Fore.RESET}")
+    print(f"{MSHead.Information} 项目目录 {Fore.BLUE}{ROOT}{Fore.RESET}")
 
     remove_dir_readme()
     remove_tip_files()
