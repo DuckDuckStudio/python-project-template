@@ -19,7 +19,7 @@ dependencies = [
 dev = [
     "pylint~=4.0.7",
     "ruff~=0.16.4",
-    "ty~=0.0.74",
+    "ty~=0.0.84",
 ]
 
 [tool.pylint.MAIN]
