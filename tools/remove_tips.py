@@ -175,12 +175,39 @@ def _remove_ty_exclude(file: Path) -> None:
     _re_sub(file, r'\s--exclude\s"tools"')
 
 
+def _remove_tools_update(file: Path) -> None:
+    """
+    移除 Dependabot 对 /tools/ 目录的依赖更新配置。
+
+    Args:
+        file (Path): 需要修改的文件
+    """
+
+    with open(file, "r", encoding="utf-8") as f:
+        _content = f.read()
+
+    with open(file, "w", encoding="utf-8") as f:
+        f.write(
+            _content.replace(
+                """
+  - package-ecosystem: "pip"
+    directory: "/tools/"
+    schedule:
+      interval: "daily"
+    cooldown:
+      default-days: 7""",
+                "",
+            )
+        )
+
+
 TIP_FILES: Final = (
     TipFile("TIPS.md"),
     TipFile("ppt/example.py"),
     TipFile("tests/test_example.py"),
     TipFile("tools/pyproject.toml"),
     TipFile("tools/remove_tips.py"),
+    TipFile(".github/dependabot.yaml", modify=_remove_tools_update),
     TipFile(".github/workflows/release_pypi.yaml", modify=_remove_test_tip),
     TipFile(".github/workflows/release_test_pypi.yaml", modify=_remove_test_tip),
     TipFile(".github/workflows/tests.yaml", modify=_remove_your_tip),
